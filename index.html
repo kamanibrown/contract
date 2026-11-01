@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>Kamani Brown — Creator–Brand Collaboration Agreement (Sign)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FCFAF7; --surface:#ffffff; --surface-2:#F4F1EC;
+    --ink:#111215; --ink-soft:#3f444b; --muted:#6b7280;
+    --line:#E7E0D6; --line-strong:#D9CFC0;
+    --gold:#C5A27D; --gold-deep:#9A7B57; --gold-soft:#F3E9DB;
+    --dark:#0B0C0E; --dark-line:rgba(255,255,255,.09);
+    --on-dark:#F5F1EA; --on-dark-muted:#A8ADB6;
+    --radius:18px; --shadow:0 18px 40px rgba(11,12,14,.07);
+    --ok:#2E7D5B; --err:#B3402F;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0E0F12; --surface:#16181D; --surface-2:#1B1E24;
+      --ink:#F2EFE9; --ink-soft:#C9CDD4; --muted:#9AA0AA;
+      --line:#2A2E36; --line-strong:#3A3F49; --gold-soft:#2A2318;
+      --shadow:0 18px 40px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px}
+  .hero{background:var(--dark);color:var(--on-dark);position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(560px 320px at 12% -10%,rgba(197,162,125,.22),transparent 65%),radial-gradient(480px 300px at 95% 110%,rgba(62,90,78,.28),transparent 65%)}
+  .hero-inner{position:relative;padding:52px 0 40px}
+  .eyebrow{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(197,162,125,.5);border-radius:999px;padding:6px 12px}
+  .hero h1{font-size:clamp(28px,4.5vw,42px);line-height:1.15;margin:20px 0 10px}
+  .hero p{color:var(--on-dark-muted);max-width:640px;margin:0}
+  .hero a{color:var(--gold)}
+  main{padding:36px 0 64px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 28px 8px;margin-bottom:22px}
+  h2{font-size:19px;margin:26px 0 8px;padding-top:22px;border-top:1px solid var(--line)}
+  h2:first-child{margin-top:0;padding-top:0;border-top:0}
+  h2 .n{color:var(--gold-deep)}
+  p,li{color:var(--ink-soft);font-size:15.5px}
+  strong{color:var(--ink)}
+  ul{padding-left:20px} li{margin:6px 0}
+  label{display:block;font-size:13.5px;font-weight:600;margin:14px 0 4px;color:var(--ink)}
+  label span{font-weight:400;color:var(--muted)}
+  input[type=text],input[type=email],input[type=date],textarea{
+    width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--surface-2);
+    border:1px solid var(--line);border-radius:10px;padding:10px 12px;outline:none;
+  }
+  input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(197,162,125,.25)}
+  input:disabled,textarea:disabled{opacity:.65}
+  textarea{min-height:64px;resize:vertical}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+  .sigbox{border:1px dashed var(--line-strong);border-radius:12px;padding:18px;margin-top:14px}
+  .sigbox.locked{opacity:.75}
+  .tabs{display:flex;gap:8px;margin:10px 0}
+  .tab{border:1px solid var(--line-strong);background:var(--surface-2);color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:13.5px;cursor:pointer}
+  .tab.active{background:var(--dark);color:var(--on-dark);border-color:var(--dark)}
+  canvas.sigpad{width:100%;height:140px;background:#fff;border:1px solid var(--line-strong);border-radius:10px;touch-action:none;cursor:crosshair}
+  .sigimg{max-width:100%;max-height:120px;display:none;border:1px solid var(--line-strong);border-radius:10px;background:#fff}
+  .btnrow{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 8px}
+  button.btn{font:inherit;font-weight:700;font-size:15px;border-radius:999px;padding:12px 22px;cursor:pointer;border:1px solid var(--dark)}
+  button.primary{background:var(--dark);color:var(--on-dark)}
+  button.gold{background:var(--gold);border-color:var(--gold-deep);color:#1a140d}
+  button.ghost{background:transparent;color:var(--ink)}
+  button.btn:disabled{opacity:.45;cursor:not-allowed}
+  .mini{font-size:13px;color:var(--muted)}
+  .status{font-size:14px;margin:10px 0 16px;min-height:20px}
+  .status.ok{color:var(--ok)} .status.err{color:var(--err)}
+  .note{background:var(--gold-soft);border:1px solid var(--line-strong);border-radius:12px;padding:16px 18px;font-size:14px;color:var(--ink-soft);margin:22px 0}
+  .foot{color:var(--muted);font-size:13px;text-align:center;padding:0 0 40px}
+  @media (max-width:640px){ .grid2{grid-template-columns:1fr} .card{padding:22px 18px 4px} }
+  @media print{ body{background:#fff;color:#111} .hero{background:#fff;color:#111} .hero p{color:#444} .card{box-shadow:none} .noprint{display:none!important} }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow" id="modeEyebrow">Signable Agreement</span>
+    <h1>Creator–Brand<br />Collaboration Agreement</h1>
+    <p>Between <strong>Kamani Brown</strong> (Creator) — <a href="https://www.youtube.com/@KamaniBrown">youtube.com/@KamaniBrown</a> · kamanibrown@gmail.com — and the Brand named in the Deal Schedule below. Fill in the Deal Schedule, sign, and download your PDF copy. This is a working template, not legal advice.</p>
+    <p id="modeNote" style="margin-top:12px"></p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <h2><span class="n">1.</span> Deal Schedule <span style="font-weight:400;color:var(--muted)">(completed per collaboration)</span></h2>
+    <p>Each collaboration is governed by this Agreement plus the Deal Schedule below. If the Deal Schedule and this Agreement conflict, the Deal Schedule governs for that collaboration. The media kit is the menu — packages, add-ons, and prices. This Agreement is what makes the selection binding: the package and add-ons recorded here determine what Brand is licensed to do, and anything beyond that selection is not included.</p>
+
+    <label>Brand (legal name) *</label>
+    <input type="text" id="f-brand" placeholder="e.g. Acme Inc." />
+    <div class="grid2">
+      <div><label>Brand contact name *</label><input type="text" id="f-contact" placeholder="Full name" /></div>
+      <div><label>Brand contact email *</label><input type="email" id="f-email" placeholder="name@company.com" /></div>
+    </div>
+    <label>Brand address <span>(if provided)</span></label>
+    <input type="text" id="f-address" placeholder="Street, city, country" />
+    <label>Product(s) and/or service(s) to be featured *</label>
+    <textarea id="f-products" placeholder="e.g. Aurora 65W GaN Charger"></textarea>
+    <label>Deliverable(s) — format, platform(s), quantity *</label>
+    <textarea id="f-deliverables" placeholder="e.g. One dedicated long-form review on YouTube + one Short"></textarea>
+    <label>Total Fee (USD) *</label>
+    <input type="text" id="f-fee" placeholder="e.g. 900" inputmode="decimal" />
+    <div class="grid2">
+      <div><label>Product ship date</label><input type="date" id="f-ship" /></div>
+      <div><label>Draft delivery date</label><input type="date" id="f-draft" /></div>
+    </div>
+    <label>Publication date or window</label>
+    <input type="text" id="f-publish" placeholder="e.g. Within 14 days of draft approval" />
+    <label>Package selected (media kit) + any usage / exclusivity add-ons</label>
+    <textarea id="f-package" placeholder="e.g. Dedicated long-form review; no paid-ads add-on; no exclusivity"></textarea>
+    <label>Payment method</label>
+    <input type="text" id="f-paymethod" placeholder="e.g. PayPal" />
+    <label>Payment destination <span>(completed at signing — appears only in the signed PDF, never on this public page)</span></label>
+    <input type="text" id="f-paydest" placeholder="e.g. PayPal address agreed by email" />
+    <p class="mini">* Required before signing. Dates may be left as text if a window rather than a fixed day is agreed.</p>
+
+    <h2><span class="n">2.</span> Services</h2>
+    <p><strong>2.1</strong> Creator will produce the deliverable(s) in the Deal Schedule in Creator's own style, voice, and format. Brand may provide a brief, talking points, and product information, but does not direct Creator's opinions, script, or editing choices.</p>
+    <p><strong>2.2</strong> Creator will disclose the partnership as required by law and platform policy (e.g., #ad / paid promotion labels).</p>
+    <p><strong>2.3</strong> Brand will ship any product needed for the deliverable at Brand's expense, in time for the agreed dates. Delays in shipping extend Creator's deadlines by the same number of days.</p>
+
+    <h2><span class="n">3.</span> Review and approval</h2>
+    <p><strong>3.1</strong> Creator will share a draft (or link) before publication where the Deal Schedule requires it. Brand has <strong>7 calendar days</strong> from delivery of the draft to request revisions.</p>
+    <p><strong>3.2</strong> If Brand does not request revisions within 7 days, the draft is deemed accepted.</p>
+    <p><strong>3.3</strong> The Fee includes <strong>two rounds of revisions</strong> for factual errors and brief compliance. Additional rounds, re-shoots, or changes of creative direction are billed separately at a rate agreed in writing.</p>
+    <p><strong>3.4</strong> Brand may not require Creator to make false claims, misrepresent the product, or remove honest opinions. Creator's review remains Creator's own.</p>
+
+    <h2><span class="n">4.</span> Fees and payment — 50% upfront</h2>
+    <p><strong>4.1 Deposit.</strong> 50% of the Total Fee is due on signing, before production begins. Production does not start until the deposit has cleared.</p>
+    <p><strong>4.2 Balance.</strong> The remaining 50% is due within <strong>15 calendar days</strong> of publication (or of delivery, if publication is delayed by Brand).</p>
+    <p><strong>4.3 Method.</strong> Payment is made by the method stated in the Deal Schedule (e.g., PayPal, wire transfer). All amounts are net: Brand bears transfer, currency-conversion, and processing fees, so Creator receives the full Fee.</p>
+    <p><strong>4.4 Late fee.</strong> Amounts unpaid past their due date accrue a late fee of <strong>2% per month</strong> (or part thereof) until paid.</p>
+    <p><strong>4.5 Invoices.</strong> Creator will issue invoices for the deposit and the balance. Brand will pay against the invoice method stated in the Deal Schedule.</p>
+    <p><strong>4.6 Currency.</strong> All fees are in USD.</p>
+
+    <h2><span class="n">5.</span> Usage rights and ownership</h2>
+    <p><strong>5.1 Ownership.</strong> Creator retains full copyright in all content. Nothing in this Agreement transfers ownership to Brand.</p>
+    <p><strong>5.2 Licence follows the package.</strong> On receipt of the <strong>full</strong> Fee, Creator grants Brand the licence matching the package and add-ons selected from the media kit and recorded in the Deal Schedule. Unless the Deal Schedule states a broader licence, that licence is:</p>
+    <ul>
+      <li>Channels: Brand's own social media accounts and product pages only (organic posting)</li>
+      <li>Territory: worldwide; Term: 12 months from publication</li>
+    </ul>
+    <p>A basic package — a single Short or a single long-form video posted on Creator's channel — carries no broader usage than this unless an add-on says so.</p>
+    <p><strong>5.3 Paid advertising excluded by default.</strong> Use in paid ads, whitelisting, broadcast, retail, or out-of-home is never included by default. It requires a separate usage add-on selected from the media kit and recorded in the Deal Schedule, with its fee agreed in writing before such use.</p>
+    <p><strong>5.4 No payment, no licence.</strong> If the Fee is not paid in full, the licence in §5.2 does not activate. Brand must not use, repost, or run the content until payment is complete.</p>
+    <p><strong>5.5 Exclusivity.</strong> Exclusivity (e.g., not featuring competing products for a period) is never included by default. It is available only as a media-kit add-on recorded in the Deal Schedule, charged additionally.</p>
+
+    <h2><span class="n">6.</span> Cancellation and kill fees</h2>
+    <p><strong>6.1</strong> If Brand cancels after signing but before production starts, the deposit is non-refundable.</p>
+    <p><strong>6.2</strong> If Brand cancels after Creator has delivered a draft or finished filming, Brand owes <strong>100% of the Total Fee</strong>.</p>
+    <p><strong>6.3</strong> If Creator cancels before delivery for reasons within Creator's control, Creator refunds the deposit.</p>
+
+    <h2><span class="n">7.</span> Non-payment remedies</h2>
+    <p><strong>7.1</strong> If any amount is more than <strong>30 calendar days</strong> overdue, Creator may, after written notice, remove or unlist the deliverable(s) until payment is received, and suspend the licence in §5.2.</p>
+    <p><strong>7.2</strong> Creator's right to payment survives removal: taking content down does not cancel the debt.</p>
+    <p><strong>7.3</strong> Each Party bears its own costs of any dispute, unless a court or tribunal orders otherwise.</p>
+
+    <h2><span class="n">8.</span> Warranties</h2>
+    <p><strong>8.1</strong> Creator warrants the deliverable(s) are Creator's original work and do not knowingly infringe third-party rights.</p>
+    <p><strong>8.2</strong> Brand warrants the product is lawful to sell in the markets where the content will be shown, and that product claims supplied to Creator are truthful and substantiated.</p>
+    <p><strong>8.3</strong> Neither Party guarantees views, sales, or any performance result. Fees are flat and are not contingent on metrics.</p>
+
+    <h2><span class="n">9.</span> Term, termination, confidentiality</h2>
+    <p><strong>9.1</strong> This Agreement covers the collaboration in the Deal Schedule. Either Party may terminate for material breach if the breach is not cured within 14 days of written notice.</p>
+    <p><strong>9.2</strong> Sections 4 (payment), 5 (usage/ownership), 6 (kill fees), and 7 (non-payment) survive termination.</p>
+    <p><strong>9.3</strong> Neither Party will disclose the other's non-public business information (including fees) except as required by law or to professional advisers.</p>
+
+    <h2><span class="n">10.</span> General</h2>
+    <p><strong>10.1 Governing law.</strong> This Agreement is governed by the laws of New Brunswick, Canada. The Parties will attempt to resolve disputes by good-faith discussion, then mediation, before any court or tribunal proceeding.</p>
+    <p><strong>10.2 Entire agreement.</strong> This Agreement plus the Deal Schedule is the entire agreement for the collaboration and supersedes prior discussions about it.</p>
+    <p><strong>10.3 Changes.</strong> Changes must be in writing and signed (including electronically) by both Parties.</p>
+    <p><strong>10.4 Electronic signatures.</strong> This Agreement may be signed electronically. Electronic signatures (including typed names, click-to-sign, and drawn signatures captured with a timestamp) are binding to the same extent as handwritten signatures, and a signed PDF copy delivered to each Party is a complete record of the signed Agreement.</p>
+  </section>
+
+  <section class="card">
+    <h2>Signatures</h2>
+    <div class="sigbox" id="brandSigBox">
+      <strong>Brand</strong>
+      <div class="grid2">
+        <div><label>Signatory name</label><input type="text" id="b-name" placeholder="Full name" /></div>
+        <div><label>Title</label><input type="text" id="b-title" placeholder="e.g. Marketing Manager" /></div>
+      </div>
+      <label>Date</label>
+      <input type="date" id="b-date" />
+      <div class="tabs noprint" role="tablist">
+        <button type="button" class="tab active" data-w="brand" data-m="draw">Draw (finger / stylus)</button>
+        <button type="button" class="tab" data-w="brand" data-m="upload">Upload image</button>
+        <button type="button" class="tab" data-w="brand" data-m="type">Type name</button>
+      </div>
+      <div data-pane="brand-draw"><canvas class="sigpad" id="brandCanvas" width="720" height="220"></canvas><p class="mini noprint">Draw above. <a href="#" id="brandClear">Clear</a></p></div>
+      <div data-pane="brand-upload" style="display:none"><input type="file" id="brandFile" accept="image/*" class="noprint" /><img class="sigimg" id="brandUploadImg" alt="Uploaded signature" /></div>
+      <div data-pane="brand-type" style="display:none"><label>Type your full name as your signature</label><input type="text" id="brandTyped" placeholder="e.g. Jordan Lee" /></div>
+    </div>
+
+    <div class="sigbox locked" id="kamaniSigBox">
+      <strong>Creator — Kamani Brown</strong>
+      <p class="mini" id="kamaniLockNote">Kamani countersigns after the Brand, using the countersign link the Brand sends him. This block unlocks when the page is opened through that link.</p>
+      <label>Date</label>
+      <input type="date" id="k-date" disabled />
+      <div class="tabs noprint" role="tablist">
+        <button type="button" class="tab active" data-w="kamani" data-m="draw">Draw (finger / stylus)</button>
+        <button type="button" class="tab" data-w="kamani" data-m="upload">Upload image</button>
+        <button type="button" class="tab" data-w="kamani" data-m="type">Type name</button>
+      </div>
+      <div data-pane="kamani-draw"><canvas class="sigpad" id="kamaniCanvas" width="720" height="220"></canvas><p class="mini noprint">Draw above. <a href="#" id="kamaniClear">Clear</a></p></div>
+      <div data-pane="kamani-upload" style="display:none"><input type="file" id="kamaniFile" accept="image/*" class="noprint" /><img class="sigimg" id="kamaniUploadImg" alt="Uploaded signature" /></div>
+      <div data-pane="kamani-type" style="display:none"><label>Type your full name as your signature</label><input type="text" id="kamaniTyped" placeholder="Kamani Brown" /></div>
+    </div>
+
+    <div class="btnrow noprint" id="brandActions">
+      <button type="button" class="btn primary" id="btnBrandSign">Sign as Brand &amp; Download PDF</button>
+      <button type="button" class="btn gold" id="btnCopyLink">Copy countersign link for Kamani</button>
+      <button type="button" class="btn ghost" id="btnEmailKamani">Email Kamani that I&rsquo;ve signed</button>
+    </div>
+    <div class="btnrow noprint" id="kamaniActions" style="display:none">
+      <button type="button" class="btn primary" id="btnKamaniSign">Sign as Kamani &amp; Download Fully Signed PDF</button>
+    </div>
+    <p class="status" id="status"></p>
+    <p class="mini noprint" id="notifyStatus"></p>
+    <div class="note">
+      <strong>How this works, and what stays private.</strong> Everything you type or sign stays in your browser — this page uploads nothing to any server. Your signed PDF downloads to your device. The countersign link contains the deal details and the Brand signature so Kamani can countersign; share it only with Kamani. The email notification to Kamani is relayed through an email service (one-time activation by Kamani); the email button here always works as the guaranteed backup.
+    </div>
+    <p class="mini noprint"><a href="#" id="btnReset">Start over / clear this form</a></p>
+  </section>
+
+  <p class="foot">Kamani Brown · kamanibrown@gmail.com · Creator–Brand Collaboration Agreement</p>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+// ---------- helpers ----------
+var $ = function(id){ return document.getElementById(id); };
+var KAMANI_EMAIL = "kamanibrown@gmail.com";
+function setStatus(msg, ok){
+  var el = $("status"); el.textContent = msg || "";
+  el.className = "status" + (ok === true ? " ok" : ok === false ? " err" : "");
+}
+function todayISO(){
+  var d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function stamp(){ return new Date().toISOString().replace("T"," ").slice(0,19) + " UTC"; }
+function b64urlEncode(str){
+  return btoa(unescape(encodeURIComponent(str))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+}
+function b64urlDecode(s){
+  s = s.replace(/-/g,"+").replace(/_/g,"/");
+  while (s.length % 4) s += "=";
+  return decodeURIComponent(escape(atob(s)));
+}
+
+// ---------- signature widgets ----------
+function makePad(canvasId, clearId){
+  var c = $(canvasId), ctx = c.getContext("2d"), strokes = [], cur = null, drawing = false;
+  ctx.lineWidth = 2.2; ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.strokeStyle = "#111215";
+  function pos(e){
+    var r = c.getBoundingClientRect();
+    return { x: (e.clientX - r.left) * c.width / r.width, y: (e.clientY - r.top) * c.height / r.height };
+  }
+  function down(e){ e.preventDefault(); drawing = true; cur = [pos(e)]; strokes.push(cur); }
+  function move(e){
+    if (!drawing) return; e.preventDefault();
+    var p = pos(e), prev = cur[cur.length-1];
+    ctx.beginPath(); ctx.moveTo(prev.x, prev.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+    cur.push(p);
+  }
+  function up(){ drawing = false; cur = null; }
+  c.addEventListener("pointerdown", down);
+  c.addEventListener("pointermove", move);
+  c.addEventListener("pointerup", up);
+  c.addEventListener("pointerleave", up);
+  $(clearId).addEventListener("click", function(e){
+    e.preventDefault();
+    strokes = []; ctx.clearRect(0, 0, c.width, c.height);
+  });
+  return {
+    has: function(){ return strokes.length > 0 && strokes.some(function(s){ return s.length > 1; }); },
+    strokes: function(){ return strokes; },
+    clear: function(){ strokes = []; ctx.clearRect(0, 0, c.width, c.height); },
+    drawOn: function(targetCtx, w, h){
+      targetCtx.save(); targetCtx.strokeStyle = "#111215"; targetCtx.lineWidth = 2.2;
+      targetCtx.lineCap = "round"; targetCtx.lineJoin = "round";
+      strokes.forEach(function(s){
+        if (s.length < 2) return;
+        targetCtx.beginPath(); targetCtx.moveTo(s[0].x, s[0].y);
+        for (var i = 1; i < s.length; i++) targetCtx.lineTo(s[i].x, s[i].y);
+        targetCtx.stroke();
+      });
+      targetCtx.restore();
+    }
+  };
+}
+var brandPad = makePad("brandCanvas", "brandClear");
+var kamaniPad = makePad("kamaniCanvas", "kamaniClear");
+
+var sigMode = { brand: "draw", kamani: "draw" };
+document.querySelectorAll(".tab").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var w = btn.getAttribute("data-w"), m = btn.getAttribute("data-m");
+    sigMode[w] = m;
+    document.querySelectorAll('.tab[data-w="' + w + '"]').forEach(function(t){ t.classList.toggle("active", t === btn); });
+    document.querySelectorAll('[data-pane^="' + w + '-"]').forEach(function(p){
+      p.style.display = p.getAttribute("data-pane") === w + "-" + m ? "" : "none";
+    });
+  });
+});
+
+function fileToDownscaledDataURL(file, imgEl, done){
+  var rd = new FileReader();
+  rd.onload = function(){
+    var img = new Image();
+    img.onload = function(){
+      var maxW = 420, scale = Math.min(1, maxW / img.width);
+      var cv = document.createElement("canvas");
+      cv.width = Math.round(img.width * scale); cv.height = Math.round(img.height * scale);
+      cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+      var data = cv.toDataURL("image/jpeg", 0.85);
+      if (imgEl){ imgEl.src = data; imgEl.style.display = "block"; }
+      done(data);
+    };
+    img.src = rd.result;
+  };
+  rd.readAsDataURL(file);
+}
+var brandUploadData = null, kamaniUploadData = null;
+$("brandFile").addEventListener("change", function(){
+  if (this.files[0]) fileToDownscaledDataURL(this.files[0], $("brandUploadImg"), function(d){ brandUploadData = d; });
+});
+$("kamaniFile").addEventListener("change", function(){
+  if (this.files[0]) fileToDownscaledDataURL(this.files[0], $("kamaniUploadImg"), function(d){ kamaniUploadData = d; });
+});
+
+function renderTyped(name, w, h){
+  var cv = document.createElement("canvas"); cv.width = w; cv.height = h;
+  var ctx = cv.getContext("2d");
+  ctx.fillStyle = "#111215"; ctx.textBaseline = "middle";
+  var size = 64;
+  ctx.font = size + "px 'Segoe Script','Bradley Hand','Brush Script MT',cursive";
+  while (ctx.measureText(name).width > w - 20 && size > 28){
+    size -= 4; ctx.font = size + "px 'Segoe Script','Bradley Hand','Brush Script MT',cursive";
+  }
+  ctx.fillText(name, 10, h / 2);
+  return cv.toDataURL("image/png");
+}
+
+// Returns {kind, ...} or null when empty.
+function getSig(w){
+  if (sigMode[w] === "draw"){
+    var pad = w === "brand" ? brandPad : kamaniPad;
+    return pad.has() ? { kind: "draw", strokes: pad.strokes() } : null;
+  }
+  if (sigMode[w] === "upload"){
+    var d = w === "brand" ? brandUploadData : kamaniUploadData;
+    return d ? { kind: "upload", data: d } : null;
+  }
+  var name = $(w === "brand" ? "brandTyped" : "kamaniTyped").value.trim();
+  return name ? { kind: "typed", name: name } : null;
+}
+// Turns a stored sig into a dataURL image (for PDF + display).
+function sigToImage(sig, w, h){
+  w = w || 420; h = h || 110;
+  if (!sig) return null;
+  if (sig.kind === "upload") return sig.data;
+  if (sig.kind === "typed") return renderTyped(sig.name, w, h);
+  var cv = document.createElement("canvas"); cv.width = w; cv.height = h;
+  var ctx = cv.getContext("2d");
+  ctx.save(); ctx.strokeStyle = "#111215"; ctx.lineWidth = 2.2; ctx.lineCap = "round"; ctx.lineJoin = "round";
+  var W = 720, H = 220, sx = w / W, sy = h / H;
+  sig.strokes.forEach(function(s){
+    if (s.length < 2) return;
+    ctx.beginPath(); ctx.moveTo(s[0].x * sx, s[0].y * sy);
+    for (var i = 1; i < s.length; i++) ctx.lineTo(s[i].x * sx, s[i].y * sy);
+    ctx.stroke();
+  });
+  ctx.restore();
+  return cv.toDataURL("image/png");
+}
+
+// ---------- form data / modes ----------
+var FIELD_IDS = ["brand","contact","email","address","products","deliverables","fee","ship","draft","publish","package","paymethod","paydest"];
+function readFields(){
+  var f = {};
+  FIELD_IDS.forEach(function(k){ f[k] = $("f-" + k).value.trim(); });
+  return f;
+}
+function writeFields(f){
+  FIELD_IDS.forEach(function(k){ if (f[k] !== undefined) $("f-" + k).value = f[k]; });
+}
+function lockFields(){
+  FIELD_IDS.forEach(function(k){ $("f-" + k).disabled = true; });
+}
+function requiredOK(){
+  var missing = [];
+  [["brand","Brand legal name"],["contact","Brand contact name"],["email","Brand contact email"],["products","Product(s)"],["deliverables","Deliverable(s)"],["fee","Total Fee"]].forEach(function(pair){
+    if (!$("f-" + pair[0]).value.trim()) missing.push(pair[1]);
+  });
+  return missing;
+}
+
+var counterData = null; // {f, b:{name,title,date,sig}}
+function parseCounterLink(){
+  var m = location.hash.match(/#s=([A-Za-z0-9\-_]+)/);
+  if (!m) return null;
+  try { return JSON.parse(b64urlDecode(m[1])); } catch (e){ return null; }
+}
+function buildCounterLink(fields, brandSig, bName, bTitle, bDate){
+  var payload = { f: fields, b: { name: bName, title: bTitle, date: bDate, sig: brandSig } };
+  var base = location.href.split("#")[0];
+  return base + "#s=" + b64urlEncode(JSON.stringify(payload));
+}
+
+// ---------- PDF ----------
+var AGREEMENT_BODY = [
+  ["2. Services",
+   "2.1 Creator will produce the deliverable(s) in the Deal Schedule in Creator's own style, voice, and format. Brand may provide a brief, talking points, and product information, but does not direct Creator's opinions, script, or editing choices.",
+   "2.2 Creator will disclose the partnership as required by law and platform policy (e.g., #ad / paid promotion labels).",
+   "2.3 Brand will ship any product needed for the deliverable at Brand's expense, in time for the agreed dates. Delays in shipping extend Creator's deadlines by the same number of days."],
+  ["3. Review and approval",
+   "3.1 Creator will share a draft (or link) before publication where the Deal Schedule requires it. Brand has 7 calendar days from delivery of the draft to request revisions.",
+   "3.2 If Brand does not request revisions within 7 days, the draft is deemed accepted.",
+   "3.3 The Fee includes two rounds of revisions for factual errors and brief compliance. Additional rounds, re-shoots, or changes of creative direction are billed separately at a rate agreed in writing.",
+   "3.4 Brand may not require Creator to make false claims, misrepresent the product, or remove honest opinions. Creator's review remains Creator's own."],
+  ["4. Fees and payment — 50% upfront",
+   "4.1 Deposit. 50% of the Total Fee is due on signing, before production begins. Production does not start until the deposit has cleared.",
+   "4.2 Balance. The remaining 50% is due within 15 calendar days of publication (or of delivery, if publication is delayed by Brand).",
+   "4.3 Method. Payment is made by the method stated in the Deal Schedule (e.g., PayPal, wire transfer). All amounts are net: Brand bears transfer, currency-conversion, and processing fees, so Creator receives the full Fee.",
+   "4.4 Late fee. Amounts unpaid past their due date accrue a late fee of 2% per month (or part thereof) until paid.",
+   "4.5 Invoices. Creator will issue invoices for the deposit and the balance. Brand will pay against the invoice method stated in the Deal Schedule.",
+   "4.6 Currency. All fees are in USD."],
+  ["5. Usage rights and ownership",
+   "5.1 Ownership. Creator retains full copyright in all content. Nothing in this Agreement transfers ownership to Brand.",
+   "5.2 Licence follows the package. On receipt of the full Fee, Creator grants Brand the licence matching the package and add-ons selected from the media kit and recorded in the Deal Schedule. Unless the Deal Schedule states a broader licence, that licence is: Channels — Brand's own social media accounts and product pages only (organic posting); Territory — worldwide; Term — 12 months from publication. A basic package (a single Short or a single long-form video posted on Creator's channel) carries no broader usage than this unless an add-on says so.",
+   "5.3 Paid advertising excluded by default. Use in paid ads, whitelisting, broadcast, retail, or out-of-home is never included by default. It requires a separate usage add-on selected from the media kit and recorded in the Deal Schedule, with its fee agreed in writing before such use.",
+   "5.4 No payment, no licence. If the Fee is not paid in full, the licence in §5.2 does not activate. Brand must not use, repost, or run the content until payment is complete.",
+   "5.5 Exclusivity. Exclusivity (e.g., not featuring competing products for a period) is never included by default. It is available only as a media-kit add-on recorded in the Deal Schedule, charged additionally."],
+  ["6. Cancellation and kill fees",
+   "6.1 If Brand cancels after signing but before production starts, the deposit is non-refundable.",
+   "6.2 If Brand cancels after Creator has delivered a draft or finished filming, Brand owes 100% of the Total Fee.",
+   "6.3 If Creator cancels before delivery for reasons within Creator's control, Creator refunds the deposit."],
+  ["7. Non-payment remedies",
+   "7.1 If any amount is more than 30 calendar days overdue, Creator may, after written notice, remove or unlist the deliverable(s) until payment is received, and suspend the licence in §5.2.",
+   "7.2 Creator's right to payment survives removal: taking content down does not cancel the debt.",
+   "7.3 Each Party bears its own costs of any dispute, unless a court or tribunal orders otherwise."],
+  ["8. Warranties",
+   "8.1 Creator warrants the deliverable(s) are Creator's original work and do not knowingly infringe third-party rights.",
+   "8.2 Brand warrants the product is lawful to sell in the markets where the content will be shown, and that product claims supplied to Creator are truthful and substantiated.",
+   "8.3 Neither Party guarantees views, sales, or any performance result. Fees are flat and are not contingent on metrics."],
+  ["9. Term, termination, confidentiality",
+   "9.1 This Agreement covers the collaboration in the Deal Schedule. Either Party may terminate for material breach if the breach is not cured within 14 days of written notice.",
+   "9.2 Sections 4 (payment), 5 (usage/ownership), 6 (kill fees), and 7 (non-payment) survive termination.",
+   "9.3 Neither Party will disclose the other's non-public business information (including fees) except as required by law or to professional advisers."],
+  ["10. General",
+   "10.1 Governing law. This Agreement is governed by the laws of New Brunswick, Canada. The Parties will attempt to resolve disputes by good-faith discussion, then mediation, before any court or tribunal proceeding.",
+   "10.2 Entire agreement. This Agreement plus the Deal Schedule is the entire agreement for the collaboration and supersedes prior discussions about it.",
+   "10.3 Changes. Changes must be in writing and signed (including electronically) by both Parties.",
+   "10.4 Electronic signatures. This Agreement may be signed electronically. Electronic signatures (including typed names, click-to-sign, and drawn signatures captured with a timestamp) are binding to the same extent as handwritten signatures, and a signed PDF copy delivered to each Party is a complete record of the signed Agreement."]
+];
+
+function buildPDF(fields, brand, kamani, brandStamp, kamaniStamp){
+  var doc = new window.jspdf.jsPDF({ unit: "mm", format: "a4" });
+  var M = 18, W = 210 - M * 2, y = M;
+  function line(h){ y += h; if (y > 275){ doc.addPage(); y = M; } }
+  function para(text, bold, size){
+    doc.setFont("helvetica", bold ? "bold" : "normal");
+    doc.setFontSize(size || 11);
+    var lines = doc.splitTextToSize(text, W);
+    lines.forEach(function(l){ if (y > 275){ doc.addPage(); y = M; } doc.text(l, M, y); y += 5.5; });
+    y += 2;
+  }
+  doc.setFont("helvetica", "bold"); doc.setFontSize(18);
+  doc.text("Creator–Brand Collaboration Agreement", M, y); y += 10;
+  doc.setFont("helvetica", "normal"); doc.setFontSize(11);
+  para("Between Kamani Brown (Creator) — kamanibrown@gmail.com, youtube.com/@KamaniBrown — and the Brand named in the Deal Schedule below. This is a working template, not legal advice.");
+  doc.setFont("helvetica", "bold"); doc.setFontSize(13);
+  doc.text("1. Deal Schedule", M, y); y += 8;
+  var rows = [
+    ["Brand (legal name)", fields.brand],
+    ["Brand contact", (fields.contact || "") + (fields.email ? " <" + fields.email + ">" : "")],
+    ["Brand address", fields.address || "—"],
+    ["Product(s) featured", fields.products],
+    ["Deliverable(s)", fields.deliverables],
+    ["Total Fee (USD)", fields.fee],
+    ["Product ship date", fields.ship || "—"],
+    ["Draft delivery date", fields.draft || "—"],
+    ["Publication date / window", fields.publish || "—"],
+    ["Package + add-ons", fields.package || "—"],
+    ["Payment method", fields.paymethod || "—"],
+    ["Payment destination", fields.paydest || "—"]
+  ];
+  rows.forEach(function(r){
+    doc.setFont("helvetica", "bold"); doc.setFontSize(11);
+    var label = doc.splitTextToSize(r[0] + ":", 52);
+    doc.setFont("helvetica", "normal");
+    var val = doc.splitTextToSize(r[1] || "—", W - 56);
+    var n = Math.max(label.length, val.length);
+    for (var i = 0; i < n; i++){
+      if (y > 275){ doc.addPage(); y = M; }
+      if (label[i]){ doc.setFont("helvetica", "bold"); doc.text(label[i], M, y); }
+      if (val[i]){ doc.setFont("helvetica", "normal"); doc.text(val[i], M + 56, y); }
+      y += 5.5;
+    }
+    y += 1.5;
+  });
+  y += 3;
+  para("The media kit is the menu — packages, add-ons, and prices. This Agreement is what makes the selection binding: the package and add-ons recorded above determine what Brand is licensed to do, and anything beyond that selection is not included.");
+  AGREEMENT_BODY.forEach(function(sec){
+    doc.setFont("helvetica", "bold"); doc.setFontSize(13);
+    if (y > 265){ doc.addPage(); y = M; }
+    doc.text(sec[0], M, y); y += 8;
+    for (var i = 1; i < sec.length; i++) para(sec[i]);
+  });
+  doc.setFont("helvetica", "bold"); doc.setFontSize(13);
+  if (y > 265){ doc.addPage(); y = M; }
+  doc.text("Signatures", M, y); y += 8;
+  function sigBlock(title, name, extra, img, dateText, stampText){
+    if (y > 235){ doc.addPage(); y = M; }
+    doc.setFont("helvetica", "bold"); doc.setFontSize(11);
+    doc.text(title, M, y); y += 6;
+    doc.setFont("helvetica", "normal");
+    if (name) { doc.text(name, M, y); y += 6; }
+    if (extra) { doc.text(extra, M, y); y += 6; }
+    if (img){
+      try { doc.addImage(img, "PNG", M, y, 60, 16); } catch (e) {}
+      y += 20;
+    } else {
+      doc.text("________________________", M, y); y += 8;
+    }
+    doc.text("Date: " + (dateText || "—"), M, y); y += 6;
+    if (stampText) { doc.setFontSize(9); doc.text("Signed electronically: " + stampText, M, y); doc.setFontSize(11); y += 8; }
+    y += 4;
+  }
+  var brandImg = sigToImage(brand.sig, 420, 110);
+  sigBlock("Brand", brand.name, brand.title || "", brandImg, brand.date, brandStamp);
+  if (kamani){
+    var kImg = sigToImage(kamani.sig, 420, 110);
+    sigBlock("Creator — Kamani Brown", "Kamani Brown", "", kImg, kamani.date, kamaniStamp);
+  } else {
+    sigBlock("Creator — Kamani Brown", "Kamani Brown", "Countersignature pending — Kamani signs via the countersign link.", null, "", "");
+  }
+  para("Electronic signatures are binding per §10.4. A signed PDF copy delivered to each Party is a complete record of the signed Agreement.", false, 9);
+  var pages = doc.getNumberOfPages();
+  for (var p = 1; p <= pages; p++){
+    doc.setPage(p); doc.setFont("helvetica", "normal"); doc.setFontSize(9);
+    doc.text("Creator–Brand Collaboration Agreement — Page " + p + " of " + pages, M, 290);
+  }
+  return doc;
+}
+function safeFileName(s){
+  return (s || "agreement").replace(/[^a-z0-9]+/gi, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "agreement";
+}
+
+// ---------- notify / share ----------
+function autoNotify(fields, link){
+  var el = $("notifyStatus");
+  el.textContent = "Sending automatic email notification to Kamani…";
+  fetch("https://formsubmit.co/ajax/" + KAMANI_EMAIL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify({
+      subject: "Signed: Collaboration Agreement — " + fields.brand,
+      message: "Brand " + fields.brand + " (" + fields.contact + ", " + fields.email + ") has signed the Creator–Brand Collaboration Agreement. Total Fee (USD): " + fields.fee + ". Countersign link: " + link,
+      _captcha: "false", _template: "table"
+    })
+  }).then(function(r){
+    el.textContent = r.ok
+      ? "Automatic email notification sent to Kamani. (If this is the first notification, Kamani must click the one-time activation email from the email service for future auto-notifications.)"
+      : "Automatic notification could not be confirmed — please use the email button below as the guaranteed backup.";
+  }).catch(function(){
+    el.textContent = "Automatic notification could not be sent — please use the email button below as the guaranteed backup.";
+  });
+}
+function copyText(t, okMsg){
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(function(){ setStatus(okMsg, true); }).catch(function(){ fallbackCopy(t, okMsg); });
+  } else fallbackCopy(t, okMsg);
+}
+function fallbackCopy(t, okMsg){
+  var ta = document.createElement("textarea");
+  ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); setStatus(okMsg, true); }
+  catch (e){ setStatus("Copy this link manually: " + t, false); }
+  document.body.removeChild(ta);
+}
+function brandInfo(){
+  var fields = readFields();
+  var missing = requiredOK();
+  if (missing.length){ setStatus("Please fill in: " + missing.join(", ") + ".", false); return null; }
+  var sig = getSig("brand");
+  if (!sig){ setStatus("Please add the Brand signature (draw, upload, or type).", false); return null; }
+  var bName = $("b-name").value.trim();
+  if (!bName){ setStatus("Please enter the Brand signatory name.", false); return null; }
+  var bDate = $("b-date").value || todayISO();
+  return { fields: fields, sig: sig, name: bName, title: $("b-title").value.trim(), date: bDate };
+}
+function requireJSPDF(){
+  if (!window.jspdf){ setStatus("The PDF tool did not load — check your connection and try again.", false); return false; }
+  return true;
+}
+
+$("btnBrandSign").addEventListener("click", function(){
+  var info = brandInfo(); if (!info || !requireJSPDF()) return;
+  var doc = buildPDF(info.fields, { name: info.name, title: info.title, date: info.date, sig: info.sig }, null, stamp(), "");
+  doc.save("Collaboration-Agreement-" + safeFileName(info.fields.brand) + "-signed-by-brand.pdf");
+  var link = buildCounterLink(info.fields, info.sig, info.name, info.title, info.date);
+  setStatus("Signed! Your brand-signed PDF downloaded. Now send Kamani the countersign link (copy button) or email him — he countersigns through the link and you both get the fully signed copy.", true);
+  autoNotify(info.fields, link);
+  window._lastLink = link;
+});
+$("btnCopyLink").addEventListener("click", function(){
+  var info = brandInfo(); if (!info) return;
+  var link = buildCounterLink(info.fields, info.sig, info.name, info.title, info.date);
+  window._lastLink = link;
+  copyText(link, "Countersign link copied — send it to Kamani (email, DM, anywhere).");
+});
+$("btnEmailKamani").addEventListener("click", function(){
+  var info = brandInfo(); if (!info) return;
+  var link = buildCounterLink(info.fields, info.sig, info.name, info.title, info.date);
+  window._lastLink = link;
+  var subject = "Signed: Collaboration Agreement — " + info.fields.brand;
+  var body = "Hi Kamani,\n\nI have signed the Creator–Brand Collaboration Agreement.\n\nBrand: " + info.fields.brand + "\nContact: " + info.name + " (" + info.fields.email + ")\nTotal Fee (USD): " + info.fields.fee + "\nSigned: " + info.date + "\n\n";
+  if (link.length < 1500){
+    body += "Countersign link (open it to add your signature and download the fully signed PDF):\n" + link + "\n";
+  } else {
+    body += "The countersign link is long, so I will paste it below this message (or send it separately). Please open it to add your signature and download the fully signed PDF.\n";
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(link);
+  }
+  body += "\nI have also downloaded my brand-signed PDF copy and can attach it on request.\n\nThank you!";
+  window.location.href = "mailto:" + KAMANI_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  setStatus("Email draft opened in your email app. If the countersign link is not in the message, paste it from your clipboard (copy button).", true);
+});
+$("btnKamaniSign").addEventListener("click", function(){
+  if (!counterData || !requireJSPDF()) return;
+  var typedName = $("kamaniTyped").value.trim();
+  var sig = getSig("kamani");
+  if (!sig){
+    if (sigMode.kamani === "type"){
+      sig = { kind: "typed", name: typedName || "Kamani Brown" };
+    } else {
+      setStatus("Please add Kamani's signature (draw, upload, or type).", false); return;
+    }
+  }
+  if (sig.kind === "typed" && !sig.name) sig.name = "Kamani Brown";
+  var kDate = $("k-date").value || todayISO();
+  var doc = buildPDF(counterData.f,
+    { name: counterData.b.name, title: counterData.b.title, date: counterData.b.date, sig: counterData.b.sig },
+    { date: kDate, sig: sig }, "", stamp());
+  doc.save("Collaboration-Agreement-" + safeFileName(counterData.f.brand) + "-fully-signed.pdf");
+  setStatus("Countersigned! The fully signed PDF downloaded. Send it to the Brand to complete the deal.", true);
+});
+$("btnReset").addEventListener("click", function(e){
+  e.preventDefault(); location.hash = ""; location.reload();
+});
+
+// ---------- init ----------
+$("b-date").value = todayISO();
+$("k-date").value = todayISO();
+counterData = parseCounterLink();
+if (counterData){
+  writeFields(counterData.f); lockFields();
+  $("b-name").value = counterData.b.name || ""; $("b-name").disabled = true;
+  $("b-title").value = counterData.b.title || ""; $("b-title").disabled = true;
+  $("b-date").value = counterData.b.date || todayISO(); $("b-date").disabled = true;
+  document.querySelectorAll('[data-pane^="brand-"]').forEach(function(p){ p.style.display = "none"; });
+  document.querySelectorAll('.tab[data-w="brand"]').forEach(function(t){ t.style.pointerEvents = "none"; t.style.opacity = "0.5"; });
+  var bim = $("brandUploadImg");
+  bim.src = sigToImage(counterData.b.sig, 420, 110) || "";
+  bim.style.display = "block";
+  var note = document.createElement("p");
+  note.className = "mini";
+  note.textContent = "Brand signature on file (locked). Signed " + (counterData.b.date || "") + ".";
+  $("brandSigBox").appendChild(note);
+  $("kamaniSigBox").classList.remove("locked");
+  $("kamaniSigBox").style.pointerEvents = "";
+  $("k-date").disabled = false;
+  $("kamaniTyped").value = "Kamani Brown";
+  $("kamaniLockNote").textContent = "Countersigning the agreement above — your signature completes it. The Brand's details are locked.";
+  $("brandActions").style.display = "none";
+  $("kamaniActions").style.display = "";
+  $("modeEyebrow").textContent = "Countersign Agreement";
+  $("modeNote").textContent = "The Brand has signed. Review the locked deal details above, add your signature, and download the fully signed PDF.";
+} else {
+  $("kamaniSigBox").style.pointerEvents = "none";
+  $("modeNote").textContent = "Brand: fill in the Deal Schedule, sign below, download your PDF copy — then send Kamani the countersign link so he can countersign.";
+}
+</script>
+</body>
+</html>
